@@ -2,7 +2,6 @@ import ApiClient from '../services/api.service';
 
 class NxbService {
     constructor() {
-        // Khởi tạo một instance của ApiClient từ api.service.js
         this.api = ApiClient;
     }
 

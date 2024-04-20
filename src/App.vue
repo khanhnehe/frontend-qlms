@@ -1,14 +1,18 @@
 <template>
   <div id="app">
-    <!-- Loại bỏ AppHeader -->
-    <!-- <AppHeader /> -->
+    <Header />
     <div class="container mt-3">
       <router-view />
     </div>
   </div>
 </template>
+
 <script>
+import Header from '@/components/admin/Header.vue';
+
 export default {
-  // Không cần thiết phải import và định nghĩa AppHeader ở đây nữa
+  components: {
+    Header
+  }
 };
 </script>

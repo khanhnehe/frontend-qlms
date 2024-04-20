@@ -1,5 +1,5 @@
 {
-  "name": "contactbook-frontend",
+  "name": "qlms b2000141",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -21,6 +21,8 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
+    "sass": "^1.75.0",
+    "sass-loader": "^14.2.1",
     "vite": "^5.1.6"
   }
 }
