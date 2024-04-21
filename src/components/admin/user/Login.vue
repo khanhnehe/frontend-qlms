@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import { useRouter } from 'vue-router';
 import DocGiaService from '@/services/docGia.service';
+import { mapMutations } from 'vuex';
 
 export default {
     data() {
@@ -25,6 +25,7 @@ export default {
         };
     },
     methods: {
+        ...mapMutations(['setDocGia']),
         async login() {
             try {
                 const data = {
@@ -34,7 +35,7 @@ export default {
                 const response = await DocGiaService.loginDocGia(data);
                 if (response.errCode === 0) {
                     console.log('Đăng nhập thành công');
-                    const router = useRouter();
+                    this.setDocGia(response.docGia); // Sửa dòng này
                     this.$router.push({ name: 'user.home' });
                 } else {
                     alert(response.errMessage);

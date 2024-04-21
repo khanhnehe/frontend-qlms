@@ -44,8 +44,8 @@ export default {
         }
     },
     computed: {
-        ...mapState(['sharedSachs']),
-        ...mapState(['sharedNxbs']),
+        ...mapState(['sharedSachs', 'sharedNxbs', 'docGia']), // Thêm 'docGia' vào đây
+
 
     },
     async created() {
@@ -69,14 +69,21 @@ export default {
     },
     methods: {
         async addToCart(sach) {
+            console.log(this.docGia);
             try {
+                if (!this.docGia) {
+                alert('Vui lòng đăng nhập trước khi thêm sách vào giỏ hàng');
+                return;
+            }
+            
                 const data = {
                     sachId: sach._id,
+                    docgia: this.docGia._id, // Sử dụng ID của độc giả từ state
                     amount: 1, // changed from 1 to 2
                 };
                 const response = await CartService.addCart(data);
-                if (response.data) {
-                    console.log('Sách đã được thêm vào giỏ hàng');
+                if (response.errCode === 0) {
+                    alert('Sách đã được thêm vào giỏ hàng');
                 }
                 else {
                     alert(`${response.errMessage}`);

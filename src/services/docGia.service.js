@@ -5,6 +5,14 @@ class DocGiaService {
         this.api = ApiClient;
     }
 
+    async loginDocGia(data) {
+        try {
+            return await this.api.post('/login', data);
+        } catch (error) {
+            throw error;
+        }
+    }
+
     async createDocGia(data) {
         try {
             return await this.api.post('/createDocGia', data);
@@ -13,13 +21,7 @@ class DocGiaService {
         }
     }
 
-    async loginDocGia(data) {
-        try {
-            return await this.api.post('/login', data);
-        } catch (error) {
-            throw error;
-        }
-    }
+
 
     async editDocGia(docgiaId, data) {
         try {

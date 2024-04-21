@@ -7,6 +7,7 @@ export default createStore({
     state: {
         sharedNxbs: [],
         sharedSachs: [],
+        docGia: null,
     },
     // là các hàm được sử dụng để thay đổi trạng thái (state) của ứng dụng
     mutations: {
@@ -16,8 +17,10 @@ export default createStore({
         },
         setSharedSachs(state, sachs) {
             state.sharedSachs = sachs;
-
-        }
+        },
+        setDocGia(state, docGia) {
+            state.docGia = docGia;
+        },
     },
     // Actions 
     actions: {
