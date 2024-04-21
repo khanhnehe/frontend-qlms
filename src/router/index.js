@@ -5,6 +5,7 @@ import EditSach from "../components/admin/Sach/EditSach.vue";
 import NotFound from "@/views/NotFound.vue";
 import HomePage from "@/components/ui/HomePage.vue";
 import InfoSach from "@/components/ui/Sachs/InfoSach.vue";
+import Login from "@/components/admin/user/Login.vue";
 
 const routes = [
     {
@@ -42,6 +43,12 @@ const routes = [
                 path: "/info-sach/:id",
                 name: "user.infoSach",
                 component: InfoSach,
+            },
+            //login
+            {
+                path: "/login",
+                name: "user.login",
+                component: Login,
             },
         ]
     },
