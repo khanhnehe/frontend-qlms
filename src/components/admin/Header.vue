@@ -1,8 +1,8 @@
 <template>
   <nav>
     <div class="header">
-      <div class="router"><router-link to="/manager-nxb">Nhà xuất bản</router-link></div>
-      <div class="router"><router-link to="/manager-sach">Sách</router-link></div>
+      <div class="router"><router-link to="/admin/manager-nxb">Nhà xuất bản</router-link></div>
+      <div class="router"><router-link to="/admin/manager-sach">Sách</router-link></div>
       <div class="router"><router-link to="/doc-gia">Độc giả</router-link></div>
       <div class="router"><router-link to="/phieu-muon">Phiếu Mượn</router-link></div>
       <div class="router"><router-link to="/ho-so">Hồ sơ</router-link></div>

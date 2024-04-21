@@ -163,6 +163,10 @@ export default {
 </script>
 
 <style scoped>
+
+.contai-sach{
+    padding: 0px 150px;
+}
 .upload-btn {
     padding: 5px 10px;
     background-color: #4ed0d8;

@@ -2,7 +2,7 @@
     <div class="contai-sach">
         <div class="mt-4">
             <!-- tạo sách -->
-            <h4 class="mr-5" style="margin-left: 92px;">Tạo Sách</h4>
+            <h4 class="mr-5" style="margin-left: 111px;">Tạo Sách</h4>
             <form @submit.prevent="submitForm">
                 <div class="row">
                     <!-- cột 1 -->
@@ -259,6 +259,11 @@ export default {
 </script>
 
 <style scoped>
+
+.contai-sach{
+    padding: 0px 100px;
+
+}
 .upload-btn {
     padding: 5px 10px;
     background-color: #4ed0d8;
