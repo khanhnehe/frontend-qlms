@@ -1,11 +1,26 @@
 <template>
-    <header>
-      <h1>Hello! {{ username }}</h1>
-      <button @click="logout">Logout</button>
-    </header>
+    <div class="header">
+      <div class="name">
+        <h6>Hello! {{ username }}</h6>
+
+      </div>
+      <div class="icon">
+        <i class="bi bi-cart"></i>
+      </div>
+      <div class="icon">
+        <i class="bi bi-person"></i>
+      </div>
+
+      <div class="icon">
+        <i class="bi bi-box-arrow-right"></i>
+      </div>
+
+        </div>
   </template>
   
   <script>
+
+
   export default {
     data() {
       return {
@@ -22,12 +37,21 @@
   </script>
   
   <style scoped>
-  header {
+  @import 'bootstrap-icons/font/bootstrap-icons.css';
+  .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-    padding: 20px;
-    background-color: #f5f5f5;
+    padding: 8px 37px;
+    background-color: #4ed0d8;
+    gap: 40px;
+    color: white;
+  }
+
+  .icon{
+    font-size: 21px;
+    margin-bottom: 10px;
+    cursor: pointer;
   }
   
   button {

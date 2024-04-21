@@ -53,11 +53,12 @@
                         </div>
                         <!-- truyền vào nxb -->
                         <div class="mb-3">
-    <label class="form-label">Nhà Xuất Bản:</label>
-    <select class="form-control" v-model="sach.MaXNB._id" required>
-        <option v-for="nxb in sharedNxbs" :value="nxb._id" :key="nxb._id">{{ nxb.tenNXB }}</option>
-    </select>
-</div>
+                            <label class="form-label">Nhà Xuất Bản:</label>
+                            <select class="form-control" v-model="sach.MaXNB._id" required>
+                                <option v-for="nxb in sharedNxbs" :value="nxb._id" :key="nxb._id">{{ nxb.tenNXB }}
+                                </option>
+                            </select>
+                        </div>
                         <div class="mb-3">
                             <label class="form-label">Tác Giả:</label>
                             <input placeholder="Nhập tên tác giả" class="form-control" v-model="sach.tacGia" required>
@@ -129,7 +130,7 @@ export default {
             const upImage = await getBase64(file);
             this.sach.anhSach = upImage;
         },
-       
+
         async fetchData() {
             try {
                 const response = await sachService.getAllSach();
@@ -163,10 +164,10 @@ export default {
 </script>
 
 <style scoped>
-
-.contai-sach{
+.contai-sach {
     padding: 0px 150px;
 }
+
 .upload-btn {
     padding: 5px 10px;
     background-color: #4ed0d8;

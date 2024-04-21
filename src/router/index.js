@@ -4,6 +4,7 @@ import CrudSach from "../components/admin/Sach/CrudSach.vue";
 import EditSach from "../components/admin/Sach/EditSach.vue";
 import NotFound from "@/views/NotFound.vue";
 import HomePage from "@/components/ui/HomePage.vue";
+import InfoSach from "@/components/ui/Sachs/InfoSach.vue";
 
 const routes = [
     {
@@ -36,7 +37,12 @@ const routes = [
                 name: "user.home",
                 component: HomePage,
             },
-            // Thêm các route user khác ở đây
+            //info sách
+            {
+                path: "/info-sach/:id",
+                name: "user.infoSach",
+                component: InfoSach,
+            },
         ]
     },
     {
