@@ -44,7 +44,6 @@
         <!-- get all nxb -->
 
         <!-- phân trang -->
-
         <nav aria-label="Page navigation example">
           <ul class="pagination">
             <li class="page-item" :class="{ disabled: currentPage === 1 }">
@@ -86,6 +85,7 @@
 
 <script>
 import NxbService from '@/services/nxb.service';
+import { mapState } from 'vuex';
 
 export default {
   data() {
@@ -94,10 +94,8 @@ export default {
         tenNXB: '',
         diaChi: ''
       },
-      nxbs: [],// danh sách nhà xuất bản
       currentPage: 1,
       perPage: 6,
-      //edit 
       showEditModal: false,
       editForm: {
         _id: '',
@@ -107,21 +105,29 @@ export default {
     };
   },
   computed: {
+    ...mapState(['sharedNxbs']), // Thêm sharedNxbs từ Vuex store
+
     paginatedData() {
       const start = (this.currentPage - 1) * this.perPage;
       const end = start + this.perPage;
-      return this.nxbs.slice(start, end);
+      return this.sharedNxbs.slice(start, end); // Thay nxbs bằng sharedNxbs
     },
     totalPages() {
-      return Math.ceil(this.nxbs.length / this.perPage);
+      return Math.ceil(this.sharedNxbs.length / this.perPage); // Thay nxbs bằng sharedNxbs
     }
   },
+  
+  created() {
+    this.$store.dispatch('fetchNxbs'); 
+    },
   methods: {
     //fetch
     async fetchData() {
       try {
         const response = await NxbService.getAllNXB();
         this.nxbs = response.nxb; // lưu trữ kết quả vào biến dữ liệu
+
+        this.$store.dispatch('setSharedNxbs', this.nxbs); // đổi tên setNxbs thành setSharedNxbs
       } catch (error) {
         console.error(error);
       }
@@ -134,7 +140,7 @@ export default {
           alert('Thêm nhà xuất bản thành công');
           this.nxb.tenNXB = '';
           this.nxb.diaChi = '';
-          this.fetchData(); // tải lại danh sách nhà xuất bản
+          this.$store.dispatch('fetchNxbs'); // tải lại danh sách nhà xuất bản
         } else {
           alert(`${response.errMessage}`);
         }
@@ -155,7 +161,7 @@ export default {
         const response = await NxbService.editNXB(this.editForm);
         if (response.errCode === 0) {
           alert('Chỉnh sửa nhà xuất bản thành công');
-          this.fetchData();
+          this.$store.dispatch('fetchNxbs'); // tải lại danh sách nhà xuất bản
           this.showEditModal = false;
 
         } else {
@@ -171,7 +177,7 @@ export default {
         const response = await NxbService.deleteNXB(nxbId);
         if (response.errCode === 0) {
           alert('Xóa nhà xuất bản thành công');
-          this.fetchData();
+          this.$store.dispatch('fetchNxbs'); // tải lại danh sách nhà xuất bản
         } else {
           console.error(response.errMessage);
         }
@@ -181,9 +187,6 @@ export default {
     },
   },
 
-  created() {
-    this.fetchData();
-  }
 };
 </script>
 
