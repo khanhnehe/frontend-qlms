@@ -5,7 +5,6 @@ class NxbService {
         this.api = ApiClient;
     }
 
-    // Tạo một nhà xuất bản mới
     async createNXB(data) {
         try {
             return await this.api.post('/createNXB', data);
@@ -14,7 +13,6 @@ class NxbService {
         }
     }
 
-    // Xóa một nhà xuất bản dựa trên ID
     async deleteNXB(nxbId) {
         try {
             return await this.api.delete(`/deleteNXB/${nxbId}`);
@@ -23,7 +21,6 @@ class NxbService {
         }
     }
 
-    // Lấy tất cả các nhà xuất bản
     async getAllNXB() {
         try {
             return await this.api.get('/getAllNXB');
