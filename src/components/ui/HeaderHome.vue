@@ -16,10 +16,12 @@
       <div class="icon">
         <i class="bi bi-person"></i>
       </div>
+      <router-link to="/login">
 
-      <div class="icon">
-        <i class="bi bi-box-arrow-right"></i>
-      </div>
+        <div class="icon" style="color: white">
+          <i class="bi bi-box-arrow-right"></i>
+        </div>
+      </router-link>
 
     </div>
   </div>

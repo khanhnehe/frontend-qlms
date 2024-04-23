@@ -1,6 +1,7 @@
 import { createStore } from 'vuex';
 import NxbService from '@/services/nxb.service';
 import SachService from '@/services/sach.service';
+import DocGiaService from '@/services/docGia.service';
 
 export default createStore({
     // State là trạng thái toàn cục
@@ -42,5 +43,19 @@ export default createStore({
                 console.error(error);
             }
         },
+        //doc gia
+        async loginDocGia({ commit }, data) {
+            try {
+                const response = await DocGiaService.loginDocGia(data);
+                if (response.errCode === 0) {
+                    commit('setDocGia', response.docGia);
+                } else {
+                    console.error(response.errMessage);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        },
+
     },
 });

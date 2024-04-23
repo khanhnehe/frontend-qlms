@@ -20,14 +20,19 @@
                             <td class="text">{{ item.sach.maSach }}</td>
                             <td class="text">{{ item.sach.tenSach }}</td>
                             <td><img :src="item.image" width="60"></td>
-                            <td class="price">{{ item.sach.donGia.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) }}</td>                        </tr>
+                            <td class="price">{{ item.sach.donGia.toLocaleString('vi-VN', {
+                                style: 'currency', currency:
+                                    'VND'
+                            }) }}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
             <div class="col-md-3 px-5">
                 <!-- <h5 style="color: darkred;">Tạm tính: {{ cart && !isNaN(Number(cart.totalPrice)) ? Number(cart.totalPrice) : '0' }}</h5>         -->
-                <button class="btn btn-primary mt-3" style="background-color: #4ed0d8; border:#4ed0d8" type="submit">
-                    Mượn sách
+                <button class="btn btn-primary mt-3" style="background-color: #4ed0d8; border:#4ed0d8" type="submit"
+                 @click="checkOut">
+                    <i class="bi bi-check"></i> Mượn sách
                 </button>
             </div>
         </div>
@@ -37,6 +42,7 @@
 
 <script>
 import CartService from '@/services/cart.service';
+import PhieuService from '@/services/phieu.service';
 import { mapState } from 'vuex';
 
 export default {
@@ -87,6 +93,25 @@ export default {
                     }
                 } else {
                     alert(`${response.errMessage}`);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        async checkOut() {
+            try {
+                const data = {
+                    docgia: this.docGia, // Replace this with the actual docgia
+                };
+                const response = await PhieuService.checkOutPhieu(data);
+                if (response.errCode === 0) {
+                    alert('Mượn sách thành công');
+                    this.cart = {};
+
+                } else {
+                    console.error(response.errMessage);
+                    alert(response.errMessage);
+
                 }
             } catch (error) {
                 console.error(error);

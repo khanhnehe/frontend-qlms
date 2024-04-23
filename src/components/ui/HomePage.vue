@@ -32,7 +32,7 @@
         <div class="row top">
             <div class="col-md-2" v-for="(sach, index) in sharedSachs" :key="index">
                 <!-- điều hướng đén info -->
-                <div class="card mb-4" @click="handeditSach(sach)">
+                <div class="card mb-4" @click="handeinfoSach(sach)">
                     <img :src="sach.anhSach" class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-name">{{ sach.tenSach }}</h5>
@@ -57,11 +57,11 @@ export default {
     created() {
         this.$store.dispatch('fetchSachs');
     },
-    watch: {
-        '$route': 'fetchSachs'
-    },
+    // watch: {
+    //     '$route': 'fetchSachs'
+    // },
     methods: {
-        handeditSach(sach) {
+        handeinfoSach(sach) {
             this.$router.push({ name: 'user.infoSach', params: { id: sach._id } });
         }
     }
