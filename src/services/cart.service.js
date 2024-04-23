@@ -13,9 +13,9 @@ class CartService {
         }
     }
 
-    async getCartByUserId(userId) {
+    async getCartByUserId(docgiaId) {
         try {
-            return await this.api.get(`/getCartByUseId/${userId}`);
+            return await this.api.get(`/getCartByUseId/${docgiaId}`);
         } catch (error) {
             throw error;
         }

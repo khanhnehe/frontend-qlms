@@ -6,7 +6,7 @@ import NotFound from "@/views/NotFound.vue";
 import HomePage from "@/components/ui/HomePage.vue";
 import InfoSach from "@/components/ui/Sachs/InfoSach.vue";
 import Login from "@/components/admin/user/Login.vue";
-
+import CartSach from "@/components/ui/Sachs/CartSach.vue";
 const routes = [
     {
         path: "/admin",
@@ -50,6 +50,13 @@ const routes = [
                 name: "user.login",
                 component: Login,
             },
+            //cart
+            {
+                path: "/cart-sach/:id",
+                name: "user.CartSach",
+                component: CartSach,
+            },
+
         ]
     },
     {

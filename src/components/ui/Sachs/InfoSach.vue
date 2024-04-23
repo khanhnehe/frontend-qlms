@@ -17,7 +17,9 @@
                 <div class="tac-gia mb-5">Số quyển: {{ sach.soQuyen }}</div>
 
                 <button class="btn btn-primary" style="background-color: #4ed0d8; border:#4ed0d8"
-                    @click="addToCart(sach)">Thêm vào giỏ hàng</button>
+                    @click="addToCart(sach)">
+                    <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng
+                </button>
 
             </div>
         </div>
