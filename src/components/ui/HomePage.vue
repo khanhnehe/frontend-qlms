@@ -8,10 +8,10 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="../../assets/ms_banner_img5.webp" class="d-block w-100" alt="...">
+                    <img src="../../assets/ms_banner_img6.webp" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="../../assets/ms_banner_img3.jpg" class="d-block w-100" alt="...">
+                    <img src="../../assets/ms_banner_img1.webp" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
                     <img src="../../assets/ms_banner_img4.webp" class="d-block w-100" alt="...">

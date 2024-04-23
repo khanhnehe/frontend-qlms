@@ -60,7 +60,6 @@ export default {
     async created() {
 
         const docgiaId = this.$route.params.id;
-        this.$store.dispatch('fetchSachs');
         try {
             const response = await CartService.getCartByUserId(docgiaId);
             if (response.errCode === 0) {

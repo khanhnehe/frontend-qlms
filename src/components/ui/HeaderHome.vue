@@ -7,17 +7,20 @@
       </router-link>
     </div>
     <div class="right">
+
       <div class="name" style="margin-top: 8px;">
         <h6 style="color:white;">Hello! {{ docGia?.ten }}</h6>
       </div>
+
       <div class="icon" @click="goToCart">
         <i class="bi bi-cart"></i>
       </div>
-      <div class="icon">
+
+      <div class="icon" @click="goToPhieu">
         <i class="bi bi-person"></i>
       </div>
-      <router-link to="/login">
 
+      <router-link to="/login">
         <div class="icon" style="color: white">
           <i class="bi bi-box-arrow-right"></i>
         </div>
@@ -47,6 +50,14 @@ export default {
       }
       this.$router.push({ name: 'user.CartSach', params: { id: this.docGia._id } });
     },
+
+    goToPhieu() {
+      if (!this.docGia) {
+        alert('Vui lòng đăng nhập trước khi xem phiếu');
+        return;
+      }
+      this.$router.push({ name: 'user.PhieuCho', params: { id: this.docGia._id } });
+    }
   }
 }
 </script>

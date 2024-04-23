@@ -4,7 +4,13 @@ class CartService {
     constructor() {
         this.api = ApiClient;
     }
-
+    async getCartByUserId(docgiaId) {
+        try {
+            return await this.api.get(`/getCartByUseId/${docgiaId}`);
+        } catch (error) {
+            throw error;
+        }
+    }
     async addCart(data) {
         try {
             return await this.api.post('/addCart', data);
@@ -13,13 +19,7 @@ class CartService {
         }
     }
 
-    async getCartByUserId(docgiaId) {
-        try {
-            return await this.api.get(`/getCartByUseId/${docgiaId}`);
-        } catch (error) {
-            throw error;
-        }
-    }
+
 
     async deleteSachCart(sachId) {
         try {

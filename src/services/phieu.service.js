@@ -22,9 +22,9 @@ class PhieuService {
         }
     }
 
-    async confirmStatus(phieuId) {
+    async confirmStatus(phieuId, actionStatus) {
         try {
-            return await this.api.put(`/confirmStatus/${phieuId}`);
+            return await this.api.put(`/confirmStatus/${phieuId}`, { actionStatus });
         } catch (error) {
             throw error;
         }
@@ -33,6 +33,14 @@ class PhieuService {
     async getAllPhieu() {
         try {
             return await this.api.get('/getAllPhieu');
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async getPhieuByStatus(status) {
+        try {
+            return await this.api.get(`/getPhieuByStatus?status=${status}`);
         } catch (error) {
             throw error;
         }
