@@ -8,7 +8,7 @@ import InfoSach from "@/components/ui/Sachs/InfoSach.vue";
 import Login from "@/components/admin/user/Login.vue";
 import CartSach from "@/components/ui/Sachs/CartSach.vue";
 import PhieuCho from "@/components/ui/PhieuMuon/PhieuCho.vue";
-
+import PhieuMuonAdmin from "@/components/admin/PhieuMuonadmin/PhieuMuonAdmin.vue";
 const routes = [
     {
         path: "/admin",
@@ -28,6 +28,11 @@ const routes = [
                 path: "edit-sach/:id",
                 name: "sach.edit",
                 component: EditSach,
+            },
+            {
+                path: "phieu-muon",
+                name: "sach.PhieuMuonAdmin",
+                component: PhieuMuonAdmin,
             },
         ]
     },
