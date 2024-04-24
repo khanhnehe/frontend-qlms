@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="col-5 mt-4" style="height: 500px;">
+        <div class="col-5 mt-4">
             <h2 class="">Đăng nhập</h2>
             <form @submit.prevent="login">
                 <label class="form-label mt-2">Điện thoại:</label>

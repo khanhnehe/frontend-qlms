@@ -88,6 +88,7 @@ import NxbService from '@/services/nxb.service';
 import { mapState } from 'vuex';
 
 export default {
+  name: "CrudNXB",
   data() {
     return {
       nxb: {
@@ -116,10 +117,10 @@ export default {
       return Math.ceil(this.sharedNxbs.length / this.perPage); // Thay nxbs bằng sharedNxbs
     }
   },
-  
+
   created() {
-    this.$store.dispatch('fetchNxbs'); 
-    },
+    this.$store.dispatch('fetchNxbs');
+  },
   methods: {
     //fetch
     async fetchData() {

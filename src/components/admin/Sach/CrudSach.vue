@@ -149,6 +149,7 @@ import { getBase64 } from '@/util/Base64';
 import { mapState } from 'vuex';
 
 export default {
+    name: "CrudSach",
     data() {
         return {
             sach: {
@@ -165,7 +166,7 @@ export default {
             currentPage: 1,
             perPage: 6,
             //edit 
-            
+
         };
     },
     computed: {
@@ -193,15 +194,15 @@ export default {
     methods: {
         //đến page edit
         handeditSach(sach) {
-        this.$router.push({ name: 'sach.edit', params: { id: sach._id } });
-    },
+            this.$router.push({ name: 'sach.edit', params: { id: sach._id } });
+        },
         //upload ảnh
         async onFileChange(e) {
             const file = e.target.files[0];
             const upImage = await getBase64(file);
             this.sach.anhSach = upImage;
         },
-       
+
         //fetch
         async fetchData() {
             try {
@@ -238,9 +239,9 @@ export default {
                 console.error(error);
                 alert('Có lỗi khi thêm Sách.');
             }
-        },      
+        },
         //xóa
-        async deleteSach(sachId) { 
+        async deleteSach(sachId) {
             try {
                 const response = await SachService.deleteSach(sachId);
                 if (response.errCode === 0) {
@@ -259,11 +260,11 @@ export default {
 </script>
 
 <style scoped>
-
-.contai-sach{
+.contai-sach {
     padding: 0px 100px;
 
 }
+
 .upload-btn {
     padding: 5px 10px;
     background-color: #4ed0d8;

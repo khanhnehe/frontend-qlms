@@ -10,7 +10,7 @@ import CartSach from "@/components/ui/Sachs/CartSach.vue";
 import PhieuCho from "@/components/ui/PhieuMuon/PhieuCho.vue";
 import PhieuMuonAdmin from "@/components/admin/PhieuMuonadmin/PhieuMuonAdmin.vue";
 import Register from "@/components/admin/user/Register.vue";
-
+import LoginAdmin from "@/components/admin/user/LoginAdmin.vue";
 const routes = [
     {
         path: "/admin",
@@ -18,25 +18,36 @@ const routes = [
         children: [
             {
                 path: "manager-nxb",
-                name: "nxb.manager",
+                name: "admin.CrudNXB",
                 component: CrudNXB,
             },
             {
                 path: "manager-sach",
-                name: "sach.manager",
+                name: "admin.CrudSach",
                 component: CrudSach,
             },
             {
                 path: "edit-sach/:id",
-                name: "sach.edit",
+                name: "admin.edit",
                 component: EditSach,
             },
             {
                 path: "phieu-muon",
-                name: "sach.PhieuMuonAdmin",
+                name: "admin.PhieuMuonAdmin",
                 component: PhieuMuonAdmin,
             },
+
+            {
+                path: "login-admin",
+                name: "admin.loginAdmin",
+                component: LoginAdmin,
+            },
         ]
+    },
+    {
+        path: "/admin/login-admin",
+        name: "admin.loginAdmin",
+        component: LoginAdmin,
     },
     {
         path: "/",

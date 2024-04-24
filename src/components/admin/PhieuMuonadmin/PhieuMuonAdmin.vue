@@ -1,7 +1,7 @@
 <template>
     <div class="phieu-content mb-5">
         <div class="mt-4"></div>
-        <button class="fetch" @click="fetchMuon">Tải lại</button>
+        <button class="fetch" @click="fetchPhieuMuon">Tải lại</button>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -26,7 +26,7 @@
                         <!-- hành động -->
                         <template v-if="phieu.trangThai === 'Chờ xác nhận'">
                             <button class="btn-huy" @click="huyMuon(phieu._id)">Hủy mượn</button>
-                            <button class="btn-xac" @click="traSach(phieu._id)">Xác nhận</button>
+                            <button class="btn-xac" @click="xacNhanMuon(phieu._id)">Xác nhận</button>
                         </template>
                         <template v-else>
                             &nbsp;
@@ -95,27 +95,28 @@ export default {
         ...mapState(['docGia']),
     },
     async created() {
-        // const docgiaId = this.$route.params.id;
-        try {
-            const response = await PhieuService.getAllPhieu();
-            if (response.errCode === 0) {
-                this.phieuList = response.phieu;
-            } else {
-                console.error(response.errMessage);
-            }
-        } catch (error) {
-            console.error(error);
-        }
+        await this.fetchPhieuMuon();
     },
     methods: {
-        async traSach(phieuId) {
+        async fetchPhieuMuon() {
+            try {
+                const response = await PhieuService.getAllPhieu();
+                if (response.errCode === 0) {
+                    this.phieuList = response.phieu;
+                } else {
+                    console.error(response.errMessage);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        async xacNhanMuon(phieuId) {
             try {
                 const response = await PhieuService.confirmStatus(phieuId, 'Đang mượn');
                 if (response.errCode === 0) {
                     alert('Bạn xác nhận đuơc mượn sách');
-                    // Fetch getPhieuById again
-                    const docgiaId = this.$route.params.id;
-                    const response = await PhieuService.getAllPhieu();
+                    await this.fetchPhieuMuon();
+
                     if (response.errCode === 0) {
                         this.phieuList = response.phieu;
                     }
@@ -132,26 +133,13 @@ export default {
                 const response = await PhieuService.confirmStatus(phieuId, 'Hủy Mượn');
                 if (response.errCode === 0) {
                     alert('Hủy mượn sách thành công');
-                    // Fetch getPhieuById again
-                    const docgiaId = this.$route.params.id;
-                    const response = await PhieuService.getAllPhieu();
+                    await this.fetchPhieuMuon();
+
                     if (response.errCode === 0) {
                         this.phieuList = response.phieu;
                     }
                 } else {
 
-                    console.error(response.errMessage);
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        },
-        async fetchMuon() {
-            try {
-                const response = await PhieuService.getAllPhieu();
-                if (response.errCode === 0) {
-                    this.phieuList = response.phieu;
-                } else {
                     console.error(response.errMessage);
                 }
             } catch (error) {
