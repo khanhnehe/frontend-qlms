@@ -1,19 +1,21 @@
 <template>
-    <div>
-      <HeaderHome />
-      <main>
-        <router-view />
-      </main>
-    </div>
-  </template>
-  
-  <script>
+  <div>
+    <HeaderHome />
+    <main>
+      <router-view />
+    </main>
+    <Footer />
+  </div>
+</template>
+
+<script>
 import HeaderHome from '@/components/ui/HeaderHome.vue';
- 
-  export default {
-    components: {
-        HeaderHome,
-      
-    }
-  };
-  </script>
+import Footer from '@/components/ui/Footer.vue';
+
+export default {
+  components: {
+    HeaderHome,
+    Footer
+  }
+};
+</script>

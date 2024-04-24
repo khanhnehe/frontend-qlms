@@ -9,6 +9,8 @@ import Login from "@/components/admin/user/Login.vue";
 import CartSach from "@/components/ui/Sachs/CartSach.vue";
 import PhieuCho from "@/components/ui/PhieuMuon/PhieuCho.vue";
 import PhieuMuonAdmin from "@/components/admin/PhieuMuonadmin/PhieuMuonAdmin.vue";
+import Register from "@/components/admin/user/Register.vue";
+
 const routes = [
     {
         path: "/admin",
@@ -68,6 +70,12 @@ const routes = [
                 path: "/phieu-cho/:id",
                 name: "user.PhieuCho",
                 component: PhieuCho,
+            },
+            //đk
+            {
+                path: "/register",
+                name: "user.Register",
+                component: Register,
             },
 
         ]

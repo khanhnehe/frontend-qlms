@@ -1,15 +1,22 @@
 <template>
-    <div>
-        <h2>Đăng nhập</h2>
-        <form @submit.prevent="login">
-            <label for="dienThoai">Điện thoại:</label>
-            <input type="text" id="dienThoai" v-model="dienThoai" required>
+    <div class="container">
+        <div class="col-5 mt-4" style="height: 500px;">
+            <h2 class="">Đăng nhập</h2>
+            <form @submit.prevent="login">
+                <label class="form-label mt-2">Điện thoại:</label>
+                <input class="form-control" type="text" v-model="dienThoai" required>
 
-            <label for="password">Mật khẩu:</label>
-            <input type="password" id="password" v-model="password" required>
+                <label class="form-label">Mật khẩu:</label>
+                <input class="form-control mb-3" type="password" v-model="password" required>
 
-            <button type="submit">Đăng nhập</button>
-        </form>
+                <button class="btn btn-primary" style="background-color: #4ed0d8; border:#4ed0d8" type="submit">Đăng
+                    nhập</button>
+                <div class="register mt-2"> <router-link to="/register">Nếu bạn chưa có tài khoản đăng ký
+                        ngay</router-link>
+                </div>
+            </form>
+        </div>
+
     </div>
 </template>
 
@@ -35,7 +42,7 @@ export default {
                 const response = await DocGiaService.loginDocGia(data);
                 if (response.errCode === 0) {
                     console.log('Đăng nhập thành công');
-                    this.setDocGia(response.docGia); // Sửa dòng này
+                    this.setDocGia(response.docGia);
                     this.$router.push({ name: 'user.home' });
                 } else {
                     alert(response.errMessage);
