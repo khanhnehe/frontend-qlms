@@ -4,7 +4,13 @@ class SachService {
     constructor() {
         this.api = ApiClient;
     }
-
+    async searchSach(seachsach) {
+        try {
+            return await this.api.get(`/search?seachsach=${seachsach}`);
+        } catch (error) {
+            throw error;
+        }
+    }
     async createSach(data) {
         try {
             return await this.api.post('/createSach', data);

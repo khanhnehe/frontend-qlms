@@ -11,6 +11,7 @@ import PhieuCho from "@/components/ui/PhieuMuon/PhieuCho.vue";
 import PhieuMuonAdmin from "@/components/admin/PhieuMuonadmin/PhieuMuonAdmin.vue";
 import Register from "@/components/admin/user/Register.vue";
 import LoginAdmin from "@/components/admin/user/LoginAdmin.vue";
+import SearchSach from "@/components/ui/Sachs/SearchSach.vue";
 const routes = [
     {
         path: "/admin",
@@ -87,6 +88,12 @@ const routes = [
                 path: "/register",
                 name: "user.Register",
                 component: Register,
+            },
+
+            {
+                path: "/search",
+                name: "user.SearchSach",
+                component: SearchSach,
             },
 
         ]

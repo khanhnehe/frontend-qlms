@@ -10,6 +10,7 @@ export default createStore({
         sharedSachs: [],
         docGia: JSON.parse(localStorage.getItem('docGia')) || null,
         phieuByStatus: [],
+        ketQuaSearch: []
     },
     // là các hàm được sử dụng để thay đổi trạng thái (state) của ứng dụng
     mutations: {
@@ -30,6 +31,9 @@ export default createStore({
         },
         setPhieuByStatus(state, phieu) {
             state.phieuByStatus = phieu;
+        },
+        setketQuaSearch(state, ketquasearch) {
+            state.ketQuaSearch = ketquasearch;
         },
     },
     // Actions 
@@ -77,6 +81,9 @@ export default createStore({
             } catch (error) {
                 console.error(error);
             }
+        },
+        setketQuaSearch({ commit }, ketquasearch) {
+            commit('setketQuaSearch', ketquasearch);
         },
 
     },
