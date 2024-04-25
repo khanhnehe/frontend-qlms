@@ -194,7 +194,7 @@ export default {
     methods: {
         //đến page edit
         handeditSach(sach) {
-            this.$router.push({ name: 'sach.edit', params: { id: sach._id } });
+            this.$router.push({ name: 'admin.edit', params: { id: sach._id } });
         },
         //upload ảnh
         async onFileChange(e) {

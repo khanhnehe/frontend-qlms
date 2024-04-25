@@ -5,6 +5,8 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
+                    <th>STT</th>
+
                     <th>Hành động</th>
 
                     <th>Mã phiếu</th>
@@ -21,6 +23,7 @@
             </thead>
             <tbody>
                 <tr v-for="(phieu, index) in phieuList" :key="index">
+                    <td>{{ index + 1 }}</td>
 
                     <td>
                         <!-- hành động -->
@@ -33,7 +36,7 @@
                         </template>
                     </td>
                     <!-- ma phieu -->
-                    <td class="code">{{ phieu.orderCode }}</td>
+                    <td class="code" @click="openModal(phieu)">{{ phieu.orderCode }}</td>
 
                     <!-- sách -->
                     <td>
@@ -76,7 +79,24 @@
             </tbody>
         </table>
     </div>
-
+    <!-- Modal -->
+    <div v-if="showModal" class="modal">
+        <div class="modal-content col-6">
+            <div class="close mb-3" @click="closeModal">&times;</div>
+            <h4 class="mb-3">Chi tiết phiếu mượn</h4>
+            <p>Mã phiếu: {{ modalPhieu.orderCode }}</p>
+            <p>Sách: {{ modalPhieu.PhieuMuonItems[0].name }}</p>
+            <p>Người mượn: {{ modalPhieu.docgia.hoLot }} {{ modalPhieu.docgia.ten }}</p>
+            <p>Tổng tiền: {{ modalPhieu.totalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) }}
+            </p>
+            <p>Trạng thái: {{ modalPhieu.trangThai }}</p>
+            <p v-if="modalPhieu.trangThai !== 'Chờ xác nhận'">Ngày Mượn: {{ formatDate(modalPhieu.ngayMuon) }}</p>
+            <p v-if="modalPhieu.trangThai !== 'Chờ xác nhận'">Hạn trả: {{ formatDate(modalPhieu.hanTra) }}</p>
+            <p v-if="modalPhieu.trangThai === 'Đã trả'">Ngày trả: {{ formatDate(modalPhieu.ngayTra) }}</p>
+            <p>Địa chỉ: {{ modalPhieu.docgia.diaChi }}</p>
+            <p>Điện thoại: {{ modalPhieu.docgia.dienThoai }}</p>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -88,7 +108,9 @@ export default {
     name: 'PhieuMuonAdmin',
     data() {
         return {
-            phieuList: []
+            phieuList: [],
+            showModal: false,
+            modalPhieu: null,
         }
     },
     computed: {
@@ -145,6 +167,14 @@ export default {
             } catch (error) {
                 console.error(error);
             }
+        },
+
+        openModal(phieu) {
+            this.modalPhieu = phieu;
+            this.showModal = true;
+        },
+        closeModal() {
+            this.showModal = false;
         },
         //format
         formatDate(date) {
@@ -291,5 +321,41 @@ export default {
         width: fit-content;
     }
 
+}
+
+.modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
 </style>

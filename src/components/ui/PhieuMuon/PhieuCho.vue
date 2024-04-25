@@ -1,9 +1,12 @@
 <template>
     <div class="container mb-5">
         <div class="mt-4"></div>
-        <router-link :to="{ name: 'user.home' }">Trang chủ</router-link> &gt; Phiếu mượn
+        <router-link :to="{ name: 'user.home' }">Trang chủ</router-link> &gt; Phiếu theo dõi
         <div class="boc col-12 mt-2" v-for="(phieu, index) in phieuList" :key="index">
-            <div class="code"> Mã phiếu: {{ phieu.orderCode }}</div>
+            <!-- mã  -->
+            <div class="code" @click="openModal(phieu)"> Mã phiếu: {{ phieu.orderCode }}</div>
+
+            <!-- info -->
             <div class="phieu-muon" v-for="(item, index) in phieu.PhieuMuonItems" :key="index">
                 <div class="top">
                     <div class="left">
@@ -47,7 +50,7 @@
                         Ngày trả: {{ formatDate(phieu.ngayTra) }}
                     </div>
 
-
+                    <!-- tong -->
                     <div class="total">Tổng giá: {{ phieu.totalPrice.toLocaleString('vi-VN', {
                         style:
                             'currency', currency: 'VND'
@@ -58,7 +61,23 @@
             </div>
         </div>
     </div>
-    <!-- </div> -->
+    <!-- Modal -->
+    <div v-if="showModal" class="modal">
+        <div class="modal-content col-6">
+            <div class="close mb-3" @click="closeModal">&times;</div>
+            <h4 class="mb-4">Chi tiết phiếu theo dõi</h4>
+            <p>Mã phiếu: {{ modalPhieu.orderCode }}</p>
+            <p>Sách: {{ modalPhieu.PhieuMuonItems[0].name }}</p>
+            <p>Tổng tiền: {{ modalPhieu.totalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) }}
+            </p>
+            <p>Trạng thái: {{ modalPhieu.trangThai }}</p>
+            <p v-if="modalPhieu.trangThai !== 'Chờ xác nhận'">Ngày Mượn: {{ formatDate(modalPhieu.ngayMuon) }}</p>
+            <p v-if="modalPhieu.trangThai !== 'Chờ xác nhận'">Hạn trả: {{ formatDate(modalPhieu.hanTra) }}</p>
+            <p v-if="modalPhieu.trangThai === 'Đã trả'">Ngày trả: {{ formatDate(modalPhieu.ngayTra) }}</p>
+            <p>Người mượn: {{ modalPhieu.docgia.hoLot }} {{ modalPhieu.docgia.ten }}</p>
+            <p>Điện thoại: {{ modalPhieu.docgia.dienThoai }}</p>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -70,7 +89,9 @@ export default {
     name: 'PhieuCho',
     data() {
         return {
-            phieuList: []
+            phieuList: [],
+            showModal: false,
+            modalPhieu: null,
         }
     },
     computed: {
@@ -127,6 +148,13 @@ export default {
             } catch (error) {
                 console.error(error);
             }
+        },
+        openModal(phieu) {
+            this.modalPhieu = phieu;
+            this.showModal = true;
+        },
+        closeModal() {
+            this.showModal = false;
         },
         //format
         formatDate(date) {
@@ -287,5 +315,41 @@ export default {
         }
 
     }
+}
+
+.modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
 </style>

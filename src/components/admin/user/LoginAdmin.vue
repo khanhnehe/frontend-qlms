@@ -40,7 +40,7 @@ export default {
                     this.$router.push({ name: 'admin.CrudSach' });
 
                 } else {
-                    alert('Lỗi đăng nhập');
+                    alert(response.errMessage);
                 }
             } catch (error) {
                 console.error(error);
